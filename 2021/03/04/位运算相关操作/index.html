@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Hello World｜undefined
+        位运算相关操作｜undefined
         
     </title>
 
-    <link rel="canonical" href="http://example.com/2021/03/04/hello-world/">
+    <link rel="canonical" href="http://example.com/2021/03/04/位运算相关操作/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -151,7 +151,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>Hello World</h1>
+                    <h1>位运算相关操作</h1>
                     
                     <span class="meta">
                          作者 huqz
@@ -161,6 +161,15 @@
                     </span>
                     <div class="tags text-center">
                         
+                        <a class="tag" href="/tags/#位运算"
+                           title="位运算">位运算</a>
+                        
+                        <a class="tag" href="/tags/#效率"
+                           title="效率">效率</a>
+                        
+                        <a class="tag" href="/tags/#算法"
+                           title="算法">算法</a>
+                        
                     </div>
                 </div>
             </div>
@@ -168,7 +177,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            Hello World
+            位运算相关操作
         </span>
     </div>
 </header>
@@ -179,30 +188,109 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h3 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h3><p>这几天做到一些算法题，虽说用笨方法也可以做出来，但是强迫症看着执行用时那里怪难受的，于是翻来大佬的解题方法，于是发现了位运算的神奇用法。</p>
+<p>在网上搜索了一下，本来想把这些用法直接注释在代码中，但是又觉得不方便查找，所以就先写在这里吧。</p>
+<h3 id="1-位运算概述"><a href="#1-位运算概述" class="headerlink" title="1.位运算概述"></a>1.位运算概述</h3><p>  计算机中所有的数据都是以二进制存储的，计算机对二进制的运算（+,-,*,/）都是用的位运算。即先用位运算计算出二进制结果，再将结果转换为其他进制，比如十进制。</p>
+<h3 id="2-位运算符号"><a href="#2-位运算符号" class="headerlink" title="2.位运算符号"></a>2.位运算符号</h3><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>名称</th>
+<th align="left">运算规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;</td>
+<td>与</td>
+<td align="left">同为1，才为1</td>
+</tr>
+<tr>
+<td>|</td>
+<td>或</td>
+<td align="left">有1，就为1</td>
+</tr>
+<tr>
+<td>^</td>
+<td>异或</td>
+<td align="left">相同为0，不同为1</td>
+</tr>
+<tr>
+<td>~</td>
+<td>取反</td>
+<td align="left">0为1,1为0</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>左移</td>
+<td align="left">二进制为左移若干位，高位丢弃，低位补0</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>右移</td>
+<td align="left">二进制位右移若干位，无符号数：高位补0.有符号数：看情况。</td>
+</tr>
+</tbody></table>
+<h3 id="3-详细内容"><a href="#3-详细内容" class="headerlink" title="3.详细内容"></a>3.详细内容</h3><h5 id="1-与（-amp-）"><a href="#1-与（-amp-）" class="headerlink" title="1.与（&amp;）"></a>1.与（&amp;）</h5><blockquote>
+<p>运算规则： 0&amp;0=0 　0&amp;1=0　  1&amp;0=0 　 1&amp;1=1</p>
+</blockquote>
+<p>注意：负数按补码形式参与操作<br>用途：</p>
+<ul>
+<li><p>清零：<br>如果想将一个单元清零，即使其全部二进制位为0，只要与一个各位都为零的数值相与，结果为零。</p>
+</li>
+<li><p>取一个数的指定位：<br>比如取数 X=1010 1110 的低4位，只需要另找一个数Y，令Y的低4位为1，其余位为0，即Y=0000 1111，然后将X与Y进行按位与运算（X&amp;Y=0000 1110）即可得到X的指定位。</p>
+</li>
+<li><p>判断奇偶<br>只要根据最未位是0还是1来决定，为0就是偶数，为1就是奇数。因此可以用if ((a &amp; 1) == 0)代替if (a % 2 == 0)来判断a是不是偶数。</p>
+</li>
+</ul>
+<p>取余的更快操作：<strong>a % 2^n == a &amp; ( (2^n) - 1 )</strong></p>
+<h5 id="2-或（-）"><a href="#2-或（-）" class="headerlink" title="2.或（|）"></a>2.或（|）</h5><blockquote>
+<p>运算规则： 0|0=0 　 0|1=1 　 1|0=1 　 1|1=1</p>
+</blockquote>
+<p>用途：</p>
+<ul>
+<li>对数据的某位置1<br>比如将数 X=1010 1110 的低4位设置为1，只需要另找一个数Y，令Y的低4位为1，其余位为0，即Y=0000 1111，然后将X与Y进行按位或运算（X|Y=1010 1111）即可得到。</li>
+</ul>
+<h5 id="3-异或（-）"><a href="#3-异或（-）" class="headerlink" title="3.异或（^）"></a>3.异或（^）</h5><blockquote>
+<p>运算规则： 0^0=0 　 0^1=1 　 1^0=1  　1^1=0</p>
+</blockquote>
+<ul>
+<li><p>翻转指定位<br>比如将数 X=1010 1110 的低4位进行翻转，只需要另找一个数Y，令Y的低4位为1，其余位为0，即Y=0000 1111，然后将X与Y进行异或运算（X^Y=1010 0001）即可得到。</p>
+</li>
+<li><p>与0相异或值不变<br>例如：1010 1110 ^ 0000 0000 = 1010 1110</p>
+</li>
+<li><p>交换两个数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Swap</span><span class="params">(<span class="keyword">int</span> &amp;a, <span class="keyword">int</span> &amp;b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a != b)&#123;</span><br><span class="line">        a ^= b;</span><br><span class="line">        b ^= a;</span><br><span class="line">        a ^= b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="4-取反（-）"><a href="#4-取反（-）" class="headerlink" title="4.取反（~）"></a>4.取反（~）</h5><blockquote>
+<p>运算规则：~0=1 　~1=0</p>
+</blockquote>
+<p>用途：</p>
+<ul>
+<li>使一个数的最低位为0<br>使a的最低位为0，可以表示为：a &amp; ~ 1。~1的值为 1111 1111 1111 1110，再按”与”运算，最低位一定为0。因为“ ~”运算符的优先级比算术运算符、关系运算符、逻辑运算符和其他运算符都高。</li>
+</ul>
+<h5 id="5-左移（-lt-lt-）"><a href="#5-左移（-lt-lt-）" class="headerlink" title="5.左移（&lt;&lt;）"></a>5.左移（&lt;&lt;）</h5><blockquote>
+<p>运算规则： 将一个二进制位左移若干位，高位丢弃，低位补0</p>
+</blockquote>
+<p>例如： a=1010 1011，a = a&lt;&lt; 2，a=1010 1100。</p>
+<p><strong>若左移时舍弃的高位不包含1，则每左移一位，相当于该数乘以2。</strong></p>
+<h5 id="6-右移（-gt-gt-）"><a href="#6-右移（-gt-gt-）" class="headerlink" title="6.右移（&gt;&gt;）"></a>6.右移（&gt;&gt;）</h5><blockquote>
+<p>运算规则： 将一个二进制位右移若干位，正数高位补0，负数高位补1，低位丢弃</p>
+</blockquote>
+<p>例如：a=a&gt;&gt;2 将a的二进制位右移2位，左补0 或者 左补1得看被移数是正还是负。<br><strong>操作数每右移一位，相当于该数除以2。</strong></p>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yrjns/p/11246163.html">https://www.cnblogs.com/yrjns/p/11246163.html</a></p>
+</blockquote>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2021/03/04/article/" data-toggle="tooltip" data-placement="top"
-                           title="article">&larr; Previous Post</a>
-                    </li>
                     
+                    <li class="next">
+                        <a href="/2021/03/04/article/" data-toggle="tooltip" data-placement="top"
+                           title="article">Next Post &rarr;</a>
+                    </li>
                     
                 </ul>
 
@@ -220,7 +308,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-%E5%89%8D%E8%A8%80"><span class="toc-text">0.前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%8D%E8%BF%90%E7%AE%97%E6%A6%82%E8%BF%B0"><span class="toc-text">1.位运算概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%B7"><span class="toc-text">2.位运算符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AF%A6%E7%BB%86%E5%86%85%E5%AE%B9"><span class="toc-text">3.详细内容</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%B8%8E%EF%BC%88-amp-%EF%BC%89"><span class="toc-text">1.与（&amp;）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%88%96%EF%BC%88-%EF%BC%89"><span class="toc-text">2.或（|）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%BC%82%E6%88%96%EF%BC%88-%EF%BC%89"><span class="toc-text">3.异或（^）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%8F%96%E5%8F%8D%EF%BC%88-%EF%BC%89"><span class="toc-text">4.取反（~）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E5%B7%A6%E7%A7%BB%EF%BC%88-lt-lt-%EF%BC%89"><span class="toc-text">5.左移（&lt;&lt;）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E5%8F%B3%E7%A7%BB%EF%BC%88-gt-gt-%EF%BC%89"><span class="toc-text">6.右移（&gt;&gt;）</span></a></li></ol></li></ol></li></ol>
                 </div>
             </div>
         </div>
