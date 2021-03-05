@@ -8,7 +8,7 @@
       <link href="2021/03/04/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/"/>
       <url>2021/03/04/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/</url>
       
-        <content type="html"><![CDATA[<span id="more"></span><p>测试一个图片而已啦!</p><p>献上 这是我的六花O(∩_∩)O</p><img src= "/img/loading.gif" data-lazy-src="/2021/03/04/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/latest" class="" title="Rikka Takanashi | Heroes Wiki | Fandom">]]></content>
+        <content type="html"><![CDATA[<span id="more"></span><p>测试一个图片而已啦!</p><p>献上 这是我的六花O(∩_∩)O</p><img src= "/img/loading.gif" data-lazy-src="/2021/03/04/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/latest" class="" title="Rikka Takanashi | Heroes Wiki | Fandom"><p>【附加】</p><ul><li><p>文章中图片的上传问题</p><blockquote><p> 如果文章中的图片都是上传图床的话，可能会不是很稳定，整理也相对繁琐。为了保证万无一失，图片最好全都保存在本地文件夹中。</p><p>但是，每次写文章的时候还要同时管理图片的保存、路径等，增加了创作成本。</p></blockquote><p>有没有一种方法能够自动保存md中的图片文件到指定的目录去呢？ 当然是有的！</p><p><code>typora</code> 编辑器自带这个功能，设置界面如下图：</p><img src= "/img/loading.gif" data-lazy-src="/2021/03/04/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/typora%E5%9B%BE%E5%83%8F%E8%AE%BE%E7%BD%AE.png" class="" title="typora图像设置"><p>其意思就是，当md中插入图片时，自动将图片复制到同目录下的同名文件夹中。这样便省去了手动管理图片，感觉轻松了不少呢！</p><hr><p>问题又来了，怎么让文章中的图片定位到正确的位置呢？</p><p>首先，将 <code>_config.yml</code> 文件中 <code>post_asset_folder</code> 的值改为 <code>true</code></p><p>其次，安装插件 <code>npm install hexo-image-link --save</code> ，其作用是在渲染文章前将Markdown语法的图片路径转换为asset_img的方式，以实现在编辑器中和发布后图片都能正常显示。</p></li></ul>]]></content>
       
       
       
