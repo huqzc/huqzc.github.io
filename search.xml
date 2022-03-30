@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>自定义Windows右键菜单</title>
+      <link href="posts/1842/"/>
+      <url>posts/1842/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="〇、前言"><a href="#〇、前言" class="headerlink" title="〇、前言"></a>〇、前言</h2><p>Windows 的右键菜单在日常生活中发挥了不小的作用。合理的时候带给我们的是便捷，被污染的时候带给我们的是噩梦，它会绑上一些没有必要的功能，不仅会拖慢右键菜单打开的速度，而且让我们强迫症无法忍受。</p><p>但是今天不是来介绍怎么清理右键菜单的，而是合理利用右键菜单，即是将一些命令行程序集成到右键菜单，生产力提升了！(UP!)</p><h2 id="一、示例"><a href="#一、示例" class="headerlink" title="一、示例"></a>一、示例</h2><p>(略)</p><h2 id="二、步骤"><a href="#二、步骤" class="headerlink" title="二、步骤"></a>二、步骤</h2><h3 id="1-通用型"><a href="#1-通用型" class="headerlink" title="1. 通用型"></a>1. 通用型</h3><p>​    <code>Win + R</code> 输入 <code>regedit</code> 打开注册表，进入如下地址：<code>计算机\HKEY_CLASSES_ROOT\*\shell</code> </p><p>在 <code>shell</code> 目录下新建 <strong>项</strong> ，命名为 <code>用Chrome打开</code>。</p><img src= "/img/loading.gif" data-lazy-src="/posts/1842/image-20220330221823815-16486499065441.png" class="" title="image-20220330221823815"><p>在刚刚建的 <strong>项</strong> 上再创建一个 <strong>项</strong> 并命名为 “command”。</p><img src= "/img/loading.gif" data-lazy-src="/posts/1842/image-20220330222920470-16486505622103.png" class="" title="image-20220330222920470"><p>双击右侧区域中的唯一选项，在数据值选项中填入 <code>chrome.exe &quot;%1&quot;</code>  并确认。</p><blockquote><p>%1 表示所选择文件的地址</p></blockquote><p>搞定！</p><h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>随便右键一个文件，点击我们注册的名称，就会用 Chrome 打开选中的文件了。</p><img src= "/img/loading.gif" data-lazy-src="/posts/1842/image-20220330223339224-16486508211674.png" class="" title="image-20220330223339224"><h3 id="2、专注型"><a href="#2、专注型" class="headerlink" title="2、专注型"></a>2、专注型</h3><blockquote><p>做了上面的通用型，我们发现有点不方便。因为每一个文件右键都会出现 <code>用Chrome打开</code>，但是有些文件谷歌浏览器是打不开的。</p><p>也就是说没必要所有文件右键都有这个功能。所以，我们接下来就改造一下，只让特定的文件生效。</p><p>此处以 增强 <code>jpg</code> 图片为例子。</p></blockquote><p>打开注册表，打开如下地址：<code>计算机\HKEY_CLASSES_ROOT\SystemFileAssociations</code> , 找到你想要的特定文件后缀名，此处我选择 <code>.jpg</code> 。</p><p>右键 <code>.jpg</code> 下的 <code>Shell（没有就手动创建）</code> ，新建项并命名为 <code>Enhance</code> ，在 <code>Enhance</code> 下面创建<strong>项</strong>并命名为 <code>command</code> 。（此操作步骤同上）</p><p>双击右侧区域中的唯一选项，在数据值选项中填入 <code>E:\Program\img-clear\realesrgan-ncnn-vulkan.exe -i &quot;%1&quot; -o output.png</code>  并确认。</p><blockquote><p> 这是一个开源的图片增强工具，以上命令是按照其格式调用。</p></blockquote><img src= "/img/loading.gif" data-lazy-src="/posts/1842/image-20220330230748997-16486528705156.png" class="" title="image-20220330230748997"><p>搞定！</p><h4 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h4><p>右键一张 <code>jpg</code> 格式的图片，并点击 <code>Enhance</code> ，此时预定的程序就会执行。</p><p>执行完毕后，同目录下就会出现已经增强图片 <code>output.png</code> ，这是程序作用的结果。</p><img src= "/img/loading.gif" data-lazy-src="/posts/1842/image-20220330225757922-16486522814345.png" class="" title="image-20220330225757922"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>学会了 Windows 右键菜单的简单注册，并实现了一些较为便捷的指令。</p><p>更多好玩的操作，还得看广大网友！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技巧 </tag>
+            
+            <tag> 注册表 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Windows下踩过ES的坑</title>
       <link href="posts/6881/"/>
       <url>posts/6881/</url>
