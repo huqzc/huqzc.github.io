@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>SSH的三种端口转发及应用</title>
+      <link href="posts/3179/"/>
+      <url>posts/3179/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="O、前言"><a href="#O、前言" class="headerlink" title="O、前言"></a>O、前言</h2><p>前几天在互联网冲浪的时候发现了一个好玩的东西：SSH 。在这之前，我以为 SSH 就单纯连接服务器用的，但看完文章我才发现，原来 SSH 这么好玩！！！</p><h2 id="一、三种端口转发"><a href="#一、三种端口转发" class="headerlink" title="一、三种端口转发"></a>一、三种端口转发</h2><p><code>SSH</code> 一共提供了3种端口转发，分别是 <code>本地转发（-L）</code>、<code>远程转发（-R）</code>、 <code>动态转发（-D）</code> 。接下来详细介绍三种端口转发食用方式。</p><h3 id="0、一些术语和约定"><a href="#0、一些术语和约定" class="headerlink" title="0、一些术语和约定"></a>0、一些术语和约定</h3><p>既然是转发，就要明白这是三台主机干的事情。（发送主机、转发主机、接收主机。）</p><p><code>本地主机</code> ： 发送主机，即当前使用的机器。形式为 IP 或域名。</p><p><code>远程主机</code> ： 转发主机，即远程用户名所在的主机。形式为 IP 或域名。</p><blockquote><p>注：远程主机 还可充当接收主机。比如要转发的服务就在远程主机上面。</p></blockquote><p>下文的命令格式参数部分略看：</p><p><code>SSH -[] [发送主机：]发送主机端口：接收主机：接收主机端口 转发主机用户名@转发主机</code></p><p>命令执行打开的窗口不能关闭，否则转发一起失效。</p><h3 id="1、本地转发（-L）"><a href="#1、本地转发（-L）" class="headerlink" title="1、本地转发（-L）"></a>1、本地转发（-L）</h3><blockquote><p>访问本地主机端口时，将访问请求转发到远程服务上去。</p></blockquote><p>格式：<code>SSH -L [本地主机：]本地主机端口：远程主机：远程主机端口 远程用户名@远程主机地址</code> 。</p><p>举例：<code>SSH -L 8080:127.0.0.1:80 root@example.com</code> 。</p><p>解释：将 <code>example.com</code> 主机中的 <code>127.0.0.1:80</code> 服务映射到本地主机的 8080 端口。</p><p>验证：在远程主机上开启 80 端口服务，本地主机不做操作，本地主机执行上述命令。此时，访问 <code>http://127.0.0.1:8080</code> 等同于访问 <code>example.com</code> 主机中的 <code>http://127.0.0.1:80</code> 。</p><p>应用：</p><ul><li>本地调试远程服务</li><li>访问受限环境的某个服务 （远程主机中 <code>mysql</code> 服务端不开放外网访问的情况下，在本地主机直接连接 <code>mysql</code> 服务）</li></ul><h3 id="2、远程转发（-R）"><a href="#2、远程转发（-R）" class="headerlink" title="2、远程转发（-R）"></a>2、远程转发（-R）</h3><blockquote><p>访问远程主机端口时，远程主机将访问请求转发到本地主机服务上。</p></blockquote><p>格式：<code>SSH -R [远程主机：]远程主机端口：本地主机：本地主机端口 远程用户名@远程主机地址</code> 。</p><p>举例：<code>SSH -R 80:127.0.0.1:8080 root@example.com</code> 。</p><p>解释：将本地的 8080 端口服务映射到 <code>example.com</code> 主机中的 <code>localhost:80</code> 端口。</p><p>验证：在本地主机开启 8080 端口服务，远程主机不做操作，本地主机执行上述命令。此时，访问 <code>http://example.com</code> 等同于访问本地主机中的 <code>http://127.0.0.1:8080</code> 。</p><p>应用：</p><ul><li>让远程主机能够通过本地主机的某个代理访问到外网。（服务器访问 GitHub 都是泪）</li><li>将本地开发的应用映射到有公网 IP 的远程主机，实现外网访问内网的应用。（内网穿透）</li></ul><p><strong>注意： 要实现远程转发需要在远程主机上配置一些信息</strong></p><ul><li><code>/etc/ssh/sshd_config</code> 中把 <code>AllowTcoForwarding</code> 选项设置为 <code>yes</code></li><li><code>/etc/sysctl.conf</code> 中把 <code>net.ipv4.ip_forward</code> 设置为 <code>1</code></li></ul><p><em><strong>多说一点：</strong></em></p><p>默认转发到远程主机绑定的是 <code>127.0.0.1</code> ，也就是只能本机访问。</p><p>在 <code>/etc/ssh/sshd_config</code> 中把 <code>GatewayPorts</code> 设置为 <code>yes</code> ，就会绑定到 <code>0.0.0.0</code> 。</p><blockquote><p>如果没有修改权限，办法也比困难多：</p><p>本地主机执行： <code>SSH -R 80:127.0.0.1:8080 root@example.com</code></p><p>远程主机执行： <code>SSH -L 0.0.0.0:8080:127.0.0.1:8080 root@127.0.0.1</code></p><hr><p>有没有一种可能，一条命令就行：<code>SSH -R 0.0.0.0:80:127.0.0.1:8080 root@example.com</code></p></blockquote><h3 id="3、动态转发（-D）"><a href="#3、动态转发（-D）" class="headerlink" title="3、动态转发（-D）"></a>3、动态转发（-D）</h3><blockquote><p>本地转发和动态转发都是针对单一端口转发，而动态转发不受端口限制。换言之，一些没有端口号的应用，比如浏览器等就能使用了。</p></blockquote><p>格式：<code>SSH -D [本地主机：]本地主机端口 远程用户名@远程主机地址</code> 。</p><p>举例：<code>SSH -D 50000 user@example.com</code> 。</p><p>解释：该命令创建一个 <code>SOCKS</code> 代理，通过该代理发出的数据包都经过 <code>example.com</code> 转发出去。</p><p>验证：远程主机不做操作，本地主机执行上述命令。</p><ul><li>浏览器：在本地主机浏览器中设置使用 <code>SOCKS</code> 代理 <code>127.0.0.1:50000</code> ，然后浏览器就能访问 <code>example.com</code> 中任何 IP 或服务。</li><li>终端：<code>export http_proxy=&quot;socks5://127.0.0.1:50000&quot;</code> , <code>export https_proxy=&quot;socks5://127.0.0.1:50000&quot;</code></li><li>SSH：<code>ssh -o ProxyCommand=&#39;/usr/bin/nc -X 5 -x 127.0.0.1:5000 %h %p&#39; user@host2</code> 未验证。</li></ul><p>应用：</p><ul><li>访问受限网络中的多种服务</li><li>FQ</li></ul><h2 id="二、总结"><a href="#二、总结" class="headerlink" title="二、总结"></a>二、总结</h2><p>知识虽小却有大用处。解决了我的一些痛点：</p><ul><li>想在本地直接连接服务器的数据库，但是又不想暴露数据库到外网。</li><li>在服务器上下载 GitHub 代码一言难尽，以前都是先本地下载，再上传到服务器。</li><li>本地部署，外网临时访问。其实就是内网穿透。</li></ul><p>参考：</p><ul><li><p><a href="https://juejin.cn/post/7187336694880796733?share_token=85c9424d-414e-4822-85d7-85487bf584c4">我挖了一条网络隧道，差点被公司激活！555</a></p></li><li><p><a href="https://jeremyxu2010.github.io/2018/12/ssh%E7%9A%84%E4%B8%89%E7%A7%8D%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/">SSH的三种端口转发</a></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 好玩 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SSH </tag>
+            
+            <tag> 转发 </tag>
+            
+            <tag> 好玩的 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>b站评论区抽奖脚本</title>
       <link href="posts/8c2d/"/>
       <url>posts/8c2d/</url>
