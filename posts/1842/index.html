@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>自定义Windows右键菜单 | 颂灬灬</title><meta name="keywords" content="技巧,注册表"><meta name="author" content="huqz"><meta name="copyright" content="huqz"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="〇、前言Windows 的右键菜单在日常生活中发挥了不小的作用。合理的时候带给我们的是便捷，被污染的时候带给我们的是噩梦，它会绑上一些没有必要的功能，不仅会拖慢右键菜单打开的速度，而且让我们强迫症无法忍受。 但是今天不是来介绍怎么清理右键菜单的，而是合理利用右键菜单，即是将一些命令行程序集成到右键菜单，生产力提升了！(UP!) 一、示例(略) 二、步骤1. 通用型​    Win + R 输入 r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义Windows右键菜单">
+<meta property="og:url" content="https://huqzc.github.io/posts/1842/index.html">
+<meta property="og:site_name" content="颂灬灬">
+<meta property="og:description" content="〇、前言Windows 的右键菜单在日常生活中发挥了不小的作用。合理的时候带给我们的是便捷，被污染的时候带给我们的是噩梦，它会绑上一些没有必要的功能，不仅会拖慢右键菜单打开的速度，而且让我们强迫症无法忍受。 但是今天不是来介绍怎么清理右键菜单的，而是合理利用右键菜单，即是将一些命令行程序集成到右键菜单，生产力提升了！(UP!) 一、示例(略) 二、步骤1. 通用型​    Win + R 输入 r">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/imhu6/resource@master/images/1648652994069%E5%85%AD%E8%8A%B1.jpg">
+<meta property="article:published_time" content="2022-03-30T21:37:04.000Z">
+<meta property="article:modified_time" content="2024-04-28T15:27:27.947Z">
+<meta property="article:author" content="huqz">
+<meta property="article:tag" content="技巧">
+<meta property="article:tag" content="注册表">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/imhu6/resource@master/images/1648652994069%E5%85%AD%E8%8A%B1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://huqzc.github.io/posts/1842/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?41d7b3179110193f131b8ce7267e74e9";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-28 15:27:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-photo-video"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/imhu6/resource@master/images/1648652923069th.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">颂灬灬</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-photo-video"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">自定义Windows右键菜单</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-30T21:37:04.000Z" title="发表于 2022-03-30 21:37:04">2022-03-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-28T15:27:27.947Z" title="更新于 2024-04-28 15:27:27">2024-04-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E5%B7%A7/">技巧</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="〇、前言"><a href="#〇、前言" class="headerlink" title="〇、前言"></a>〇、前言</h2><p>Windows 的右键菜单在日常生活中发挥了不小的作用。合理的时候带给我们的是便捷，被污染的时候带给我们的是噩梦，它会绑上一些没有必要的功能，不仅会拖慢右键菜单打开的速度，而且让我们强迫症无法忍受。</p>
+<p>但是今天不是来介绍怎么清理右键菜单的，而是合理利用右键菜单，即是将一些命令行程序集成到右键菜单，生产力提升了！(UP!)</p>
+<h2 id="一、示例"><a href="#一、示例" class="headerlink" title="一、示例"></a>一、示例</h2><p>(略)</p>
+<h2 id="二、步骤"><a href="#二、步骤" class="headerlink" title="二、步骤"></a>二、步骤</h2><h3 id="1-通用型"><a href="#1-通用型" class="headerlink" title="1. 通用型"></a>1. 通用型</h3><p>​    <code>Win + R</code> 输入 <code>regedit</code> 打开注册表，进入如下地址：<code>计算机\HKEY_CLASSES_ROOT\*\shell</code> </p>
+<p>在 <code>shell</code> 目录下新建 <strong>项</strong> ，命名为 <code>用Chrome打开</code>。</p>
+<img src= "/img/loading.gif" data-lazy-src="/posts/1842/image-20220330221823815-16486499065441.png" class="" title="image-20220330221823815">
+
+<p>在刚刚建的 <strong>项</strong> 上再创建一个 <strong>项</strong> 并命名为 “command”。</p>
+<img src= "/img/loading.gif" data-lazy-src="/posts/1842/image-20220330222920470-16486505622103.png" class="" title="image-20220330222920470">
+
+<p>双击右侧区域中的唯一选项，在数据值选项中填入 <code>chrome.exe &quot;%1&quot;</code>  并确认。</p>
+<blockquote>
+<p>%1 表示所选择文件的地址</p>
+</blockquote>
+<p>搞定！</p>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>随便右键一个文件，点击我们注册的名称，就会用 Chrome 打开选中的文件了。</p>
+<img src= "/img/loading.gif" data-lazy-src="/posts/1842/image-20220330223339224-16486508211674.png" class="" title="image-20220330223339224">
+
+
+
+<h3 id="2、专注型"><a href="#2、专注型" class="headerlink" title="2、专注型"></a>2、专注型</h3><blockquote>
+<p>做了上面的通用型，我们发现有点不方便。因为每一个文件右键都会出现 <code>用Chrome打开</code>，但是有些文件谷歌浏览器是打不开的。</p>
+<p>也就是说没必要所有文件右键都有这个功能。所以，我们接下来就改造一下，只让特定的文件生效。</p>
+<p>此处以 增强 <code>jpg</code> 图片为例子。</p>
+</blockquote>
+<p>打开注册表，打开如下地址：<code>计算机\HKEY_CLASSES_ROOT\SystemFileAssociations</code> , 找到你想要的特定文件后缀名，此处我选择 <code>.jpg</code> 。</p>
+<p>右键 <code>.jpg</code> 下的 <code>Shell（没有就手动创建）</code> ，新建项并命名为 <code>Enhance</code> ，在 <code>Enhance</code> 下面创建<strong>项</strong>并命名为 <code>command</code> 。（此操作步骤同上）</p>
+<p>双击右侧区域中的唯一选项，在数据值选项中填入 <code>E:\Program\img-clear\realesrgan-ncnn-vulkan.exe -i &quot;%1&quot; -o output.png</code>  并确认。</p>
+<blockquote>
+<p> 这是一个开源的图片增强工具，以上命令是按照其格式调用。</p>
+</blockquote>
+<img src= "/img/loading.gif" data-lazy-src="/posts/1842/image-20220330230748997-16486528705156.png" class="" title="image-20220330230748997">
+
+<p>搞定！</p>
+<h4 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h4><p>右键一张 <code>jpg</code> 格式的图片，并点击 <code>Enhance</code> ，此时预定的程序就会执行。</p>
+<p>执行完毕后，同目录下就会出现已经增强图片 <code>output.png</code> ，这是程序作用的结果。</p>
+<img src= "/img/loading.gif" data-lazy-src="/posts/1842/image-20220330225757922-16486522814345.png" class="" title="image-20220330225757922">
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>学会了 Windows 右键菜单的简单注册，并实现了一些较为便捷的指令。</p>
+<p>更多好玩的操作，还得看广大网友！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">huqz</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://huqzc.github.io/posts/1842/">https://huqzc.github.io/posts/1842/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://huqzc.github.io" target="_blank">颂灬灬</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%8A%80%E5%B7%A7/">技巧</a><a class="post-meta__tags" href="/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/">注册表</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/imhu6/resource@master/images/1648652994069%E5%85%AD%E8%8A%B1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/8c2d/"><img class="prev-cover" data-lazy-src="https://fastly.jsdelivr.net/gh/imhu6/resource@master/images/16670603303811667060329861.png" onerror="onerror=null;src='/img/default_cover.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">b站评论区抽奖脚本</div></div></a></div><div class="next-post pull-right"><a href="/posts/6881/"><img class="next-cover" data-lazy-src="https://cdn.jsdelivr.net/gh/imhu6/resource@master/images/1648462459406Windows%E4%B8%8B%E8%B8%A9%E8%BF%87ES%E7%9A%84%E5%9D%91.jpg" onerror="onerror=null;src='/img/default_cover.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Windows下踩过ES的坑</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">huqz</div><div class="author-info__description">生活原本沉闷，但跑起来就会有风</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/huqzc"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/huqzc" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:yeshuqz@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">客官，来了就多逛逛噻~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%87%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-text">〇、前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%A4%BA%E4%BE%8B"><span class="toc-text">一、示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%AD%A5%E9%AA%A4"><span class="toc-text">二、步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%80%9A%E7%94%A8%E5%9E%8B"><span class="toc-text">1. 通用型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-text">测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E4%B8%93%E6%B3%A8%E5%9E%8B"><span class="toc-text">2、专注型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-1"><span class="toc-text">测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/3179/" title="SSH的三种端口转发及应用"><img data-lazy-src="https://fastly.jsdelivr.net/gh/imhu6/resource@master/images/image-20230114184730148.png" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="SSH的三种端口转发及应用"/></a><div class="content"><a class="title" href="/posts/3179/" title="SSH的三种端口转发及应用">SSH的三种端口转发及应用</a><time datetime="2023-01-14T16:50:00.000Z" title="发表于 2023-01-14 16:50:00">2023-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/8c2d/" title="b站评论区抽奖脚本"><img data-lazy-src="https://fastly.jsdelivr.net/gh/imhu6/resource@master/images/16670603303811667060329861.png" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="b站评论区抽奖脚本"/></a><div class="content"><a class="title" href="/posts/8c2d/" title="b站评论区抽奖脚本">b站评论区抽奖脚本</a><time datetime="2022-10-21T13:36:54.000Z" title="发表于 2022-10-21 13:36:54">2022-10-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1842/" title="自定义Windows右键菜单"><img data-lazy-src="https://cdn.jsdelivr.net/gh/imhu6/resource@master/images/1648652994069%E5%85%AD%E8%8A%B1.jpg" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="自定义Windows右键菜单"/></a><div class="content"><a class="title" href="/posts/1842/" title="自定义Windows右键菜单">自定义Windows右键菜单</a><time datetime="2022-03-30T21:37:04.000Z" title="发表于 2022-03-30 21:37:04">2022-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/6881/" title="Windows下踩过ES的坑"><img data-lazy-src="https://cdn.jsdelivr.net/gh/imhu6/resource@master/images/1648462459406Windows%E4%B8%8B%E8%B8%A9%E8%BF%87ES%E7%9A%84%E5%9D%91.jpg" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="Windows下踩过ES的坑"/></a><div class="content"><a class="title" href="/posts/6881/" title="Windows下踩过ES的坑">Windows下踩过ES的坑</a><time datetime="2022-03-28T12:49:18.000Z" title="发表于 2022-03-28 12:49:18">2022-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c7fc/" title="批处理语法纪实"><img data-lazy-src="/img/article/%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E7%BA%AA%E5%AE%9E.jpg" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="批处理语法纪实"/></a><div class="content"><a class="title" href="/posts/c7fc/" title="批处理语法纪实">批处理语法纪实</a><time datetime="2021-06-13T14:39:10.000Z" title="发表于 2021-06-13 14:39:10">2021-06-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By huqz</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'vocy9iJxhIYrnMYpQXY0fnv8-MdYXbMMI',
+      appKey: 'yqLx3EmEb09dnIq6Mzqk2hmR',
+      placeholder: '来都来了，总得留下点东西吧(￣へ￣)',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

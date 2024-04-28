@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SSH的三种端口转发及应用 | 颂灬灬</title><meta name="keywords" content="SSH,转发,好玩的"><meta name="author" content="huqz"><meta name="copyright" content="huqz"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="你应该不知道的 SSH 三个神仙用法！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH的三种端口转发及应用">
+<meta property="og:url" content="https://huqzc.github.io/posts/3179/index.html">
+<meta property="og:site_name" content="颂灬灬">
+<meta property="og:description" content="你应该不知道的 SSH 三个神仙用法！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/imhu6/resource@master/images/image-20230114184730148.png">
+<meta property="article:published_time" content="2023-01-14T16:50:00.000Z">
+<meta property="article:modified_time" content="2024-04-28T15:27:27.939Z">
+<meta property="article:author" content="huqz">
+<meta property="article:tag" content="SSH">
+<meta property="article:tag" content="转发">
+<meta property="article:tag" content="好玩的">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/imhu6/resource@master/images/image-20230114184730148.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://huqzc.github.io/posts/3179/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?41d7b3179110193f131b8ce7267e74e9";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-28 15:27:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-photo-video"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://fastly.jsdelivr.net/gh/imhu6/resource@master/images/image-20230114184730148.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">颂灬灬</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-photo-video"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SSH的三种端口转发及应用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-14T16:50:00.000Z" title="发表于 2023-01-14 16:50:00">2023-01-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-28T15:27:27.939Z" title="更新于 2024-04-28 15:27:27">2024-04-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A5%BD%E7%8E%A9/">好玩</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="O、前言"><a href="#O、前言" class="headerlink" title="O、前言"></a>O、前言</h2><p>前几天在互联网冲浪的时候发现了一个好玩的东西：SSH 。在这之前，我以为 SSH 就单纯连接服务器用的，但看完文章我才发现，原来 SSH 这么好玩！！！</p>
+<h2 id="一、三种端口转发"><a href="#一、三种端口转发" class="headerlink" title="一、三种端口转发"></a>一、三种端口转发</h2><p><code>SSH</code> 一共提供了3种端口转发，分别是 <code>本地转发（-L）</code>、<code>远程转发（-R）</code>、 <code>动态转发（-D）</code> 。接下来详细介绍三种端口转发食用方式。</p>
+<h3 id="0、一些术语和约定"><a href="#0、一些术语和约定" class="headerlink" title="0、一些术语和约定"></a>0、一些术语和约定</h3><p>既然是转发，就要明白这是三台主机干的事情。（发送主机、转发主机、接收主机。）</p>
+<p><code>本地主机</code> ： 发送主机，即当前使用的机器。形式为 IP 或域名。</p>
+<p><code>远程主机</code> ： 转发主机，即远程用户名所在的主机。形式为 IP 或域名。</p>
+<blockquote>
+<p>注：远程主机 还可充当接收主机。比如要转发的服务就在远程主机上面。</p>
+</blockquote>
+<p>下文的命令格式参数部分略看：</p>
+<p><code>SSH -[] [发送主机：]发送主机端口：接收主机：接收主机端口 转发主机用户名@转发主机</code></p>
+<p>命令执行打开的窗口不能关闭，否则转发一起失效。</p>
+<h3 id="1、本地转发（-L）"><a href="#1、本地转发（-L）" class="headerlink" title="1、本地转发（-L）"></a>1、本地转发（-L）</h3><blockquote>
+<p>访问本地主机端口时，将访问请求转发到远程服务上去。</p>
+</blockquote>
+<p>格式：<code>SSH -L [本地主机：]本地主机端口：远程主机：远程主机端口 远程用户名@远程主机地址</code> 。</p>
+<p>举例：<code>SSH -L 8080:127.0.0.1:80 root@example.com</code> 。</p>
+<p>解释：将 <code>example.com</code> 主机中的 <code>127.0.0.1:80</code> 服务映射到本地主机的 8080 端口。</p>
+<p>验证：在远程主机上开启 80 端口服务，本地主机不做操作，本地主机执行上述命令。此时，访问 <code>http://127.0.0.1:8080</code> 等同于访问 <code>example.com</code> 主机中的 <code>http://127.0.0.1:80</code> 。</p>
+<p>应用：</p>
+<ul>
+<li>本地调试远程服务</li>
+<li>访问受限环境的某个服务 （远程主机中 <code>mysql</code> 服务端不开放外网访问的情况下，在本地主机直接连接 <code>mysql</code> 服务）</li>
+</ul>
+<h3 id="2、远程转发（-R）"><a href="#2、远程转发（-R）" class="headerlink" title="2、远程转发（-R）"></a>2、远程转发（-R）</h3><blockquote>
+<p>访问远程主机端口时，远程主机将访问请求转发到本地主机服务上。</p>
+</blockquote>
+<p>格式：<code>SSH -R [远程主机：]远程主机端口：本地主机：本地主机端口 远程用户名@远程主机地址</code> 。</p>
+<p>举例：<code>SSH -R 80:127.0.0.1:8080 root@example.com</code> 。</p>
+<p>解释：将本地的 8080 端口服务映射到 <code>example.com</code> 主机中的 <code>localhost:80</code> 端口。</p>
+<p>验证：在本地主机开启 8080 端口服务，远程主机不做操作，本地主机执行上述命令。此时，访问 <code>http://example.com</code> 等同于访问本地主机中的 <code>http://127.0.0.1:8080</code> 。</p>
+<p>应用：</p>
+<ul>
+<li>让远程主机能够通过本地主机的某个代理访问到外网。（服务器访问 GitHub 都是泪）</li>
+<li>将本地开发的应用映射到有公网 IP 的远程主机，实现外网访问内网的应用。（内网穿透）</li>
+</ul>
+<p><strong>注意： 要实现远程转发需要在远程主机上配置一些信息</strong></p>
+<ul>
+<li><code>/etc/ssh/sshd_config</code> 中把 <code>AllowTcoForwarding</code> 选项设置为 <code>yes</code></li>
+<li><code>/etc/sysctl.conf</code> 中把 <code>net.ipv4.ip_forward</code> 设置为 <code>1</code></li>
+</ul>
+<p><em><strong>多说一点：</strong></em></p>
+<p>默认转发到远程主机绑定的是 <code>127.0.0.1</code> ，也就是只能本机访问。</p>
+<p>在 <code>/etc/ssh/sshd_config</code> 中把 <code>GatewayPorts</code> 设置为 <code>yes</code> ，就会绑定到 <code>0.0.0.0</code> 。</p>
+<blockquote>
+<p>如果没有修改权限，办法也比困难多：</p>
+<p>本地主机执行： <code>SSH -R 80:127.0.0.1:8080 root@example.com</code></p>
+<p>远程主机执行： <code>SSH -L 0.0.0.0:8080:127.0.0.1:8080 root@127.0.0.1</code></p>
+<hr>
+<p>有没有一种可能，一条命令就行：<code>SSH -R 0.0.0.0:80:127.0.0.1:8080 root@example.com</code></p>
+</blockquote>
+<h3 id="3、动态转发（-D）"><a href="#3、动态转发（-D）" class="headerlink" title="3、动态转发（-D）"></a>3、动态转发（-D）</h3><blockquote>
+<p>本地转发和动态转发都是针对单一端口转发，而动态转发不受端口限制。换言之，一些没有端口号的应用，比如浏览器等就能使用了。</p>
+</blockquote>
+<p>格式：<code>SSH -D [本地主机：]本地主机端口 远程用户名@远程主机地址</code> 。</p>
+<p>举例：<code>SSH -D 50000 user@example.com</code> 。</p>
+<p>解释：该命令创建一个 <code>SOCKS</code> 代理，通过该代理发出的数据包都经过 <code>example.com</code> 转发出去。</p>
+<p>验证：远程主机不做操作，本地主机执行上述命令。</p>
+<ul>
+<li>浏览器：在本地主机浏览器中设置使用 <code>SOCKS</code> 代理 <code>127.0.0.1:50000</code> ，然后浏览器就能访问 <code>example.com</code> 中任何 IP 或服务。</li>
+<li>终端：<code>export http_proxy=&quot;socks5://127.0.0.1:50000&quot;</code> , <code>export https_proxy=&quot;socks5://127.0.0.1:50000&quot;</code></li>
+<li>SSH：<code>ssh -o ProxyCommand=&#39;/usr/bin/nc -X 5 -x 127.0.0.1:5000 %h %p&#39; user@host2</code> 未验证。</li>
+</ul>
+<p>应用：</p>
+<ul>
+<li>访问受限网络中的多种服务</li>
+<li>FQ</li>
+</ul>
+<h2 id="二、总结"><a href="#二、总结" class="headerlink" title="二、总结"></a>二、总结</h2><p>知识虽小却有大用处。解决了我的一些痛点：</p>
+<ul>
+<li>想在本地直接连接服务器的数据库，但是又不想暴露数据库到外网。</li>
+<li>在服务器上下载 GitHub 代码一言难尽，以前都是先本地下载，再上传到服务器。</li>
+<li>本地部署，外网临时访问。其实就是内网穿透。</li>
+</ul>
+<p>参考：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7187336694880796733?share_token=85c9424d-414e-4822-85d7-85487bf584c4">我挖了一条网络隧道，差点被公司激活！555</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://jeremyxu2010.github.io/2018/12/ssh%E7%9A%84%E4%B8%89%E7%A7%8D%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/">SSH的三种端口转发</a></p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">huqz</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://huqzc.github.io/posts/3179/">https://huqzc.github.io/posts/3179/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://huqzc.github.io" target="_blank">颂灬灬</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SSH/">SSH</a><a class="post-meta__tags" href="/tags/%E8%BD%AC%E5%8F%91/">转发</a><a class="post-meta__tags" href="/tags/%E5%A5%BD%E7%8E%A9%E7%9A%84/">好玩的</a></div><div class="post_share"><div class="social-share" data-image="https://fastly.jsdelivr.net/gh/imhu6/resource@master/images/image-20230114184730148.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/8c2d/"><img class="next-cover" data-lazy-src="https://fastly.jsdelivr.net/gh/imhu6/resource@master/images/16670603303811667060329861.png" onerror="onerror=null;src='/img/default_cover.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">b站评论区抽奖脚本</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">huqz</div><div class="author-info__description">生活原本沉闷，但跑起来就会有风</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/huqzc"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/huqzc" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:yeshuqz@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">客官，来了就多逛逛噻~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#O%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-text">O、前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%89%E7%A7%8D%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="toc-text">一、三种端口转发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0%E3%80%81%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD%E5%92%8C%E7%BA%A6%E5%AE%9A"><span class="toc-text">0、一些术语和约定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%9C%AC%E5%9C%B0%E8%BD%AC%E5%8F%91%EF%BC%88-L%EF%BC%89"><span class="toc-text">1、本地转发（-L）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%BF%9C%E7%A8%8B%E8%BD%AC%E5%8F%91%EF%BC%88-R%EF%BC%89"><span class="toc-text">2、远程转发（-R）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%8A%A8%E6%80%81%E8%BD%AC%E5%8F%91%EF%BC%88-D%EF%BC%89"><span class="toc-text">3、动态转发（-D）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">二、总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/3179/" title="SSH的三种端口转发及应用"><img data-lazy-src="https://fastly.jsdelivr.net/gh/imhu6/resource@master/images/image-20230114184730148.png" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="SSH的三种端口转发及应用"/></a><div class="content"><a class="title" href="/posts/3179/" title="SSH的三种端口转发及应用">SSH的三种端口转发及应用</a><time datetime="2023-01-14T16:50:00.000Z" title="发表于 2023-01-14 16:50:00">2023-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/8c2d/" title="b站评论区抽奖脚本"><img data-lazy-src="https://fastly.jsdelivr.net/gh/imhu6/resource@master/images/16670603303811667060329861.png" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="b站评论区抽奖脚本"/></a><div class="content"><a class="title" href="/posts/8c2d/" title="b站评论区抽奖脚本">b站评论区抽奖脚本</a><time datetime="2022-10-21T13:36:54.000Z" title="发表于 2022-10-21 13:36:54">2022-10-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1842/" title="自定义Windows右键菜单"><img data-lazy-src="https://cdn.jsdelivr.net/gh/imhu6/resource@master/images/1648652994069%E5%85%AD%E8%8A%B1.jpg" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="自定义Windows右键菜单"/></a><div class="content"><a class="title" href="/posts/1842/" title="自定义Windows右键菜单">自定义Windows右键菜单</a><time datetime="2022-03-30T21:37:04.000Z" title="发表于 2022-03-30 21:37:04">2022-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/6881/" title="Windows下踩过ES的坑"><img data-lazy-src="https://cdn.jsdelivr.net/gh/imhu6/resource@master/images/1648462459406Windows%E4%B8%8B%E8%B8%A9%E8%BF%87ES%E7%9A%84%E5%9D%91.jpg" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="Windows下踩过ES的坑"/></a><div class="content"><a class="title" href="/posts/6881/" title="Windows下踩过ES的坑">Windows下踩过ES的坑</a><time datetime="2022-03-28T12:49:18.000Z" title="发表于 2022-03-28 12:49:18">2022-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c7fc/" title="批处理语法纪实"><img data-lazy-src="/img/article/%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E7%BA%AA%E5%AE%9E.jpg" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="批处理语法纪实"/></a><div class="content"><a class="title" href="/posts/c7fc/" title="批处理语法纪实">批处理语法纪实</a><time datetime="2021-06-13T14:39:10.000Z" title="发表于 2021-06-13 14:39:10">2021-06-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By huqz</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'vocy9iJxhIYrnMYpQXY0fnv8-MdYXbMMI',
+      appKey: 'yqLx3EmEb09dnIq6Mzqk2hmR',
+      placeholder: '来都来了，总得留下点东西吧(￣へ￣)',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

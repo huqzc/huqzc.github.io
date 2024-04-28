@@ -1,0 +1,309 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>批处理语法纪实 | 颂灬灬</title><meta name="keywords" content="批处理"><meta name="author" content="huqz"><meta name="copyright" content="huqz"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="了解一些批处理语法还是能够起到一些积极作用的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="批处理语法纪实">
+<meta property="og:url" content="https://huqzc.github.io/posts/c7fc/index.html">
+<meta property="og:site_name" content="颂灬灬">
+<meta property="og:description" content="了解一些批处理语法还是能够起到一些积极作用的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huqzc.github.io/img/article/%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E7%BA%AA%E5%AE%9E.jpg">
+<meta property="article:published_time" content="2021-06-13T14:39:10.000Z">
+<meta property="article:modified_time" content="2024-04-28T15:27:27.947Z">
+<meta property="article:author" content="huqz">
+<meta property="article:tag" content="批处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huqzc.github.io/img/article/%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E7%BA%AA%E5%AE%9E.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://huqzc.github.io/posts/c7fc/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?41d7b3179110193f131b8ce7267e74e9";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-28 15:27:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-photo-video"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/article/%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E7%BA%AA%E5%AE%9E.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">颂灬灬</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-file-alt"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-photo-video"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">批处理语法纪实</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-13T14:39:10.000Z" title="发表于 2021-06-13 14:39:10">2021-06-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-28T15:27:27.947Z" title="更新于 2024-04-28 15:27:27">2024-04-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="批处理语法纪实"><a href="#批处理语法纪实" class="headerlink" title="批处理语法纪实"></a>批处理语法纪实</h2><h3 id="1-变量"><a href="#1-变量" class="headerlink" title="1.变量"></a>1.变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set A&#x3D;hello world</span><br></pre></td></tr></table></figure>
+
+<p>将<code>hello world</code>赋值给变量A</p>
+<p>参数：</p>
+<ul>
+<li><p>/A 后面的赋值语句为简单的数值运算</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set &#x2F;a num&#x3D;1+1</span><br></pre></td></tr></table></figure></li>
+<li><p>/P 后面的语句作为提示用户语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set &#x2F;p file&#x3D;input filename:</span><br></pre></td></tr></table></figure>
+
+<p>用户可以在窗口中输入</p>
+</li>
+</ul>
+<h2 id="2-if"><a href="#2-if" class="headerlink" title="2.if"></a>2.if</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (condition) do_something</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if exist person.txt echo file exist</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>person.txt</code> 存在，则显示 <code>file exist</code> .</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if %num% &#x3D;&#x3D; 2 (echo value&#x3D;2) else (echo value!&#x3D;2)</span><br></pre></td></tr></table></figure>
+
+<p>如果变量 <code>num</code> 的值为 <code>2</code> ，显示 <code>value=2</code> , 否则显示 <code>value!=2</code> .</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if %string%&#x3D;&#x3D;String1 (echo String1) else (</span><br><span class="line">	if %string%&#x3D;&#x3D;String2 (echo String2) else (</span><br><span class="line">		if %string%&#x3D;&#x3D;String3 (echo String3)</span><br><span class="line">	)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-for"><a href="#3-for" class="headerlink" title="3.for"></a>3.for</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for %%variable in (list) do do_something</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：在 <code>.bat</code> 文件中，循环变量为 <code>%%variable</code> 。在 <code>cmd</code> 中，循环变量写为 <code>%variable</code></strong> 。</p>
+<p>例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for %%I in (1, 2, 3, 4, 5) do echo %%I</span><br></pre></td></tr></table></figure>
+
+<p>输入为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for %%I in (*.txt) do echo %%I</span><br></pre></td></tr></table></figure>
+
+<p>遍历当前目录下所有以 <code>.txt</code> 结尾的文件，并逐个显示到屏幕</p>
+<p>输出为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a.txt</span><br><span class="line">b.txt</span><br><span class="line">c.txt</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h3><p>参数：</p>
+<ul>
+<li><p>/F        for 语句最常用的、也是最强的命令。主要用来处理文件和一些命令的输出结果。它可以提取文本文件的内容，进行逐行分析和处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FOR &#x2F;F [&quot;options&quot;] %variable IN (file-set) DO command [command-parameters]</span><br><span class="line">FOR &#x2F;F [&quot;options&quot;] %variable IN (&quot;string&quot;) DO command [command-parameters]</span><br><span class="line">FOR &#x2F;F [&quot;options&quot;] %variable IN (&#39;command&#39;) DO command [command-parameters]</span><br></pre></td></tr></table></figure>
+
+<p>其中file-set为一个或多个文件名。for 语句会逐一分析指定的每个文件，打开指定文件、读取并处理文件内容。处理包括读取文件内容，将文件内容逐行读取，然后将每行解析成零或更多的符号（默认使用空格作为分隔符）。</p>
+</li>
+</ul>
+<p>  例如</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; test.txt</span><br><span class="line">姓名	年龄 成绩</span><br><span class="line">张三	10	98</span><br><span class="line">李四	11	89</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; test.bat</span><br><span class="line">@echo off</span><br><span class="line">for &#x2F;F %%I in (test.txt) do (</span><br><span class="line">	echo %%I</span><br><span class="line">)</span><br><span class="line">pause</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;输出</span><br><span class="line">姓名</span><br><span class="line">张三</span><br><span class="line">李四</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 解析：在for循环中，逐行读取test.txt文件中的内容。默认使用空格做分割，然后将分割后的值显示。（这里被分割后只剩每行的第一列了）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="eol"><a href="#eol" class="headerlink" title="eol=#"></a>eol=#</h4><p>指定读取到的以 <code>#</code> 开头的行为注释行，忽略不进行处理</p>
+</li>
+<li><h4 id="skip-n"><a href="#skip-n" class="headerlink" title="skip=n"></a>skip=n</h4><p>指定在for语句解析每个文件时，从文件头部跳过的行数</p>
+</li>
+<li><h4 id="delims-xxx"><a href="#delims-xxx" class="headerlink" title="delims=xxx"></a>delims=xxx</h4><p>指定分隔符号集，替换for语句默认的空格和制表符。</p>
+</li>
+<li><h4 id="tokens-x-y-m-n"><a href="#tokens-x-y-m-n" class="headerlink" title="tokens=x,y,m-n"></a>tokens=x,y,m-n</h4><ul>
+<li>tokens=m 表示提取第m列；</li>
+<li>tokens=m,n 表示提取第m列和第n列；</li>
+<li>tokens=m-n 表示提取第m列至第n列；</li>
+<li>tokens=* 忽略行首的所有空格；</li>
+<li>tokens=m* 提取第m列以后的所有字符，星号表示剩余的字符；</li>
+</ul>
+</li>
+</ul>
+<p>  例如</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for &#x2F;f &quot;delims&#x3D; skip&#x3D;1&quot; %%I in (&#39;dir &#x2F;a test* &#x2F;b&#39;) do echo &quot;%%I&quot;</span><br></pre></td></tr></table></figure>
+
+<p>  找出所有以 <code>test</code> 开头的文件，并输入其文件名。</p>
+<p>  <code>delims= skip=1</code> 将文件名含空格的仍作为一个整体</p>
+<p>  输出为：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;test 1.txt&quot;</span><br><span class="line">&quot;test 2.txt&quot;</span><br><span class="line">&quot;test test .txt&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-函数"><a href="#4-函数" class="headerlink" title="4.函数"></a>4.函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:funtion_name</span><br><span class="line">your code</span><br><span class="line">exit &#x2F;b 0</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">:count</span><br><span class="line">set &#x2F;a num+&#x3D;1</span><br><span class="line">if %num%&#x3D;&#x3D;100 echo 循环到100次了</span><br><span class="line">goto count</span><br></pre></td></tr></table></figure>
+
+<p>定义了一个名为 <code>count</code>  的函数，其功能为每调用一次该函数，<code>num</code> 的值都 <code>+1</code> ，然后继续调用该函数。形成一个无限循环。</p>
+<h2 id="5-goto"><a href="#5-goto" class="headerlink" title="5.goto"></a>5.goto</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">goto function_name</span><br></pre></td></tr></table></figure>
+
+<p>跳转到某个函数中去执行</p>
+<h2 id="6-逻辑运算符"><a href="#6-逻辑运算符" class="headerlink" title="6.逻辑运算符"></a>6.逻辑运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AND	逻辑和</span><br><span class="line">OR	逻辑或</span><br><span class="line">NOT	逻辑非</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">huqz</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://huqzc.github.io/posts/c7fc/">https://huqzc.github.io/posts/c7fc/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://huqzc.github.io" target="_blank">颂灬灬</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/">批处理</a></div><div class="post_share"><div class="social-share" data-image="/img/article/%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E7%BA%AA%E5%AE%9E.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/6881/"><img class="prev-cover" data-lazy-src="https://cdn.jsdelivr.net/gh/imhu6/resource@master/images/1648462459406Windows%E4%B8%8B%E8%B8%A9%E8%BF%87ES%E7%9A%84%E5%9D%91.jpg" onerror="onerror=null;src='/img/default_cover.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Windows下踩过ES的坑</div></div></a></div><div class="next-post pull-right"><a href="/posts/b8c4/"><img class="next-cover" data-lazy-src="/img/default_cover.jpg" onerror="onerror=null;src='/img/default_cover.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">测试图片是否正常显示</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">huqz</div><div class="author-info__description">生活原本沉闷，但跑起来就会有风</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/huqzc"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/huqzc" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:yeshuqz@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">客官，来了就多逛逛噻~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E7%BA%AA%E5%AE%9E"><span class="toc-text">批处理语法纪实</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%98%E9%87%8F"><span class="toc-text">1.变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-if"><span class="toc-text">2.if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-for"><span class="toc-text">3.for</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95"><span class="toc-text">高级用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#eol"><span class="toc-text">eol&#x3D;#</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#skip-n"><span class="toc-text">skip&#x3D;n</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#delims-xxx"><span class="toc-text">delims&#x3D;xxx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tokens-x-y-m-n"><span class="toc-text">tokens&#x3D;x,y,m-n</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%87%BD%E6%95%B0"><span class="toc-text">4.函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-goto"><span class="toc-text">5.goto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">6.逻辑运算符</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/3179/" title="SSH的三种端口转发及应用"><img data-lazy-src="https://fastly.jsdelivr.net/gh/imhu6/resource@master/images/image-20230114184730148.png" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="SSH的三种端口转发及应用"/></a><div class="content"><a class="title" href="/posts/3179/" title="SSH的三种端口转发及应用">SSH的三种端口转发及应用</a><time datetime="2023-01-14T16:50:00.000Z" title="发表于 2023-01-14 16:50:00">2023-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/8c2d/" title="b站评论区抽奖脚本"><img data-lazy-src="https://fastly.jsdelivr.net/gh/imhu6/resource@master/images/16670603303811667060329861.png" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="b站评论区抽奖脚本"/></a><div class="content"><a class="title" href="/posts/8c2d/" title="b站评论区抽奖脚本">b站评论区抽奖脚本</a><time datetime="2022-10-21T13:36:54.000Z" title="发表于 2022-10-21 13:36:54">2022-10-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1842/" title="自定义Windows右键菜单"><img data-lazy-src="https://cdn.jsdelivr.net/gh/imhu6/resource@master/images/1648652994069%E5%85%AD%E8%8A%B1.jpg" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="自定义Windows右键菜单"/></a><div class="content"><a class="title" href="/posts/1842/" title="自定义Windows右键菜单">自定义Windows右键菜单</a><time datetime="2022-03-30T21:37:04.000Z" title="发表于 2022-03-30 21:37:04">2022-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/6881/" title="Windows下踩过ES的坑"><img data-lazy-src="https://cdn.jsdelivr.net/gh/imhu6/resource@master/images/1648462459406Windows%E4%B8%8B%E8%B8%A9%E8%BF%87ES%E7%9A%84%E5%9D%91.jpg" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="Windows下踩过ES的坑"/></a><div class="content"><a class="title" href="/posts/6881/" title="Windows下踩过ES的坑">Windows下踩过ES的坑</a><time datetime="2022-03-28T12:49:18.000Z" title="发表于 2022-03-28 12:49:18">2022-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c7fc/" title="批处理语法纪实"><img data-lazy-src="/img/article/%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E7%BA%AA%E5%AE%9E.jpg" onerror="this.onerror=null;this.src='/img/default_cover.jpg'" alt="批处理语法纪实"/></a><div class="content"><a class="title" href="/posts/c7fc/" title="批处理语法纪实">批处理语法纪实</a><time datetime="2021-06-13T14:39:10.000Z" title="发表于 2021-06-13 14:39:10">2021-06-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By huqz</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'vocy9iJxhIYrnMYpQXY0fnv8-MdYXbMMI',
+      appKey: 'yqLx3EmEb09dnIq6Mzqk2hmR',
+      placeholder: '来都来了，总得留下点东西吧(￣へ￣)',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
